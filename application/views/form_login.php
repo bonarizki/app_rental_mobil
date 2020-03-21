@@ -11,8 +11,15 @@
             <div class="card card-primary">
               <div class="card-header"><h4>Login</h4></div>
 
-              <span class="m-2"><?php echo $this->session->flashdata('pesan')?> </span>
-
+              <!-- <span class="m-2"><?php echo $this->session->flashdata('pesan')?> </span> -->
+              <?php if(!empty($this->session->flashdata('message'))){ ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong><?= $this->session->flashdata('message') ?></strong>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              <?php } ?>
               <div class="card-body">
                 <form method="POST" action="<?php echo base_url('auth/login')?>">
                   <div class="form-group">
@@ -49,3 +56,14 @@
       </div>
     </section>
   </div>
+
+  <?php if($this->session->flashdata('auth')){ ?>
+    <script>
+      Swal.fire({
+      title: 'Error!',
+      text: "<?= $this->session->flashdata('auth') ?>",
+      icon: 'error',
+      confirmButtonText: 'Cool'
+    });
+    </script>
+  <?php } ?>

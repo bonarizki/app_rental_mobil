@@ -2,6 +2,10 @@
 
 class Auth extends CI_Controller {
 
+	public function __construct() {
+		parent::__construct();
+	 }
+
 	public function login()
 	{
 		$this->_rules();
@@ -18,16 +22,11 @@ class Auth extends CI_Controller {
 
 			if($cek == FALSE) 
 			{
-				$this->session->set_flashdata('pesan', '<div class= "alert alert-success alert-danger fade show" role="alert">
-				Username atau Password Salah!.
-				<button type="button" close="close" data-dismiss="alert" aria-label="close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-				</div>');
-			redirect ('auth/login');
+				$this->session->set_flashdata('message', 'Username Atau Password Salah');
+				redirect ('auth/login');
 			}else{
 				$this->session->set_userdata('username', $cek->username);
-				$this->session->set_userdata('role_id', $cek->username);
+				$this->session->set_userdata('role_id', $cek->role_id);
 				$this->session->set_userdata('nama', $cek->username);
 
 				switch ($cek->role_id) {
@@ -87,6 +86,12 @@ class Auth extends CI_Controller {
 			redirect ('auth/login');
 		}
 	}
+
+	/* public function authForAdmin()
+	{
+		echo "jamban";
+		die();
+	} */
 }
 
 ?>

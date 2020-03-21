@@ -1,6 +1,12 @@
 <?php
 
-class data_mobil extends CI_Controller {
+class data_mobil extends Secure_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->authForAdmin($this->session->userdata());
+	}
 	public function index ()
 	{	
 		$data['mobil'] = $this->rental_model->get_data('mobil')->result();

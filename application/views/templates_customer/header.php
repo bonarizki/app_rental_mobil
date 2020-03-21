@@ -16,6 +16,9 @@
   <!-- Custom styles for this template -->
   <link href="<?php echo base_url() ?>/assets/assets_shop/css/shop-homepage.css" rel="stylesheet">
 
+  <!-- datatables -->
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
 </head>
 
 <body>
@@ -39,13 +42,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url ('register')?>">Register</a>
-          </li>
-
            <li class="nav-item row ml-2">
-
             <?php if ($this->session->userdata('nama')) { ?>
               <a class="nav-link" href="<?php echo base_url('auth/logout') ?>"> Welcome <?php echo $this->session->userdata('nama') ?> 
               <span class="btn btn-sm btn-warning"> Logout </span> </a>
@@ -54,11 +51,10 @@
               <span class="btn btn-sm btn-primary"> Ganti Password </span> </a>
 
               <?php } else { ?>
-
               <a class="nav-link" href="<?php echo base_url('auth/login') ?>"> 
               <span class="btn btn-sm btn-success"> Login </span> </a>
+              <a class="nav-link" href="<?php echo base_url ('register')?>"> <span class="btn btn-sm btn-primary">Register</span></a>
               <?php } ?>
-            
           </li>
         </ul>
       </div>

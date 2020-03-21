@@ -3,7 +3,7 @@
 
     <div class="row">
 
-      <div class="col-lg-3">
+     <!--  <div class="col-lg-3">
 
         <h1 class="my-4">Shop Name</h1>
         <div class="list-group">
@@ -12,11 +12,10 @@
           <a href="#" class="list-group-item">Category 3</a>
         </div>
 
-      </div>
+      </div> -->
       <!-- /.col-lg-3 -->
 
-      <div class="col-lg-9">
-
+      <div class="col-12">
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -66,7 +65,7 @@
                 echo "<span class='btn btn-danger' disable> Telah Di Rental</span>";
                }else 
                {
-                echo anchor('customer/rental/tambah_rental'.$mb->id_mobil, '<button class="btn btn-success"> Rental </button>)');
+                echo anchor('customer/rental/tambah_rental'.$mb->id_mobil, '<button class="btn btn-success"> Rental </button>');
                }
                ?>
 

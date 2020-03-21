@@ -1,6 +1,11 @@
 <?php
 
-class Dashboard extends CI_Controller {
+class Dashboard extends Secure_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
 
 	public function index ()
 	{
@@ -17,6 +22,8 @@ class Dashboard extends CI_Controller {
 		$this->load->view('customer/detail_mobil', $data);
 		$this->load->view('templates_customer/footer');
 	}
+
+	
 }
 
 ?>

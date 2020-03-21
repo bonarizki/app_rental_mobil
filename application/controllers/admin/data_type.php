@@ -1,6 +1,12 @@
 <?php
 
-class data_type extends CI_Controller {
+class data_type extends Secure_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->authForAdmin($this->session->userdata());
+	}
 
 	public function index()
 	{

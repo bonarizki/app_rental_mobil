@@ -56,6 +56,16 @@ class rental_model extends CI_model {
 		$result = $this->db->where('id_customer',$id)->get('customer')->result_array();
 		return $result;
 	}
+
+	public function addSupir($data)
+	{
+		return $this->db->insert('data_driver',$data);
+	}
+
+	public function getSupir()
+	{
+		return $this->db->get('data_driver')->result_array();
+	}
 }
 
 ?>
