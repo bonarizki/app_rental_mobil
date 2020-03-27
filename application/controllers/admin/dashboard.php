@@ -61,6 +61,8 @@ class Dashboard extends Secure_Controller {
 				"no_hp"=>$this->input->post('no_telepon'),
 				"no_ktp"=>$this->input->post('no_ktp'),
 				"email"=>$this->input->post('email'),
+				"status_job"=>'0',
+				"status_supir"=>'0'
 			];
 
 			$query = $this->rental_model->addSupir($data);
@@ -74,6 +76,20 @@ class Dashboard extends Secure_Controller {
 		$data = $this->rental_model->getSupir();
 
 		echo json_encode(["data"=>$data]);
+	}
+
+	public function activeDriver($id)
+	{
+		$updateStatus = $this->rental_model->updateDriverStatus($id);
+
+		echo json_encode(["data"=>"berhasil"]);
+	}
+	
+	public function deactiveDriver($id)
+	{
+		$updateStatus = $this->rental_model->deActiveDriverStatus($id);
+
+		echo json_encode(["data"=>"berhasil"]);
 	}
 }
 

@@ -12,7 +12,6 @@
                 <tr>
                     <th> Nama </th>
                     <th> No KTP </th>
-                    <th> Tanggal Lahir </th>
                     <th> Alamat </th>
                     <th> Gender </th>
                     <th> No.Telepon </th>
@@ -21,7 +20,7 @@
                     <th> Action </th>
                 </tr>
             </thead>
-            <tfoot>
+            <!-- <tfoot>
                 <tr>
                     <th> Nama </th>
                     <th> Alamat </th>
@@ -31,7 +30,7 @@
                     <th> Password </th>
                     <th> Action </th>
                 </tr>
-            </tfoot>
+            </tfoot> -->
         </table>
     </section>
 </div>  
@@ -114,21 +113,28 @@
                 { "data":"alamat"},
                 { "data":"jk"},
                 { "data":"no_hp"},
-                { "data":"status_supir"},
                 { "data":"email"},
                 {
                     "data":"id_supir",
                     "status_job":"status_job",
                     "render":function(data, type, row,status_job){
-                        if(row.status_job=='order'){
-                            return '<center><badge class="btn btn-sm btn-danger fa fa-lock" onclick="updateDeactive('+data+')"></badge></center>'
-                        }else if(row.status_job=='ready'){
-                            return '<center><badge class="btn btn-sm btn-primary fa fa-unlock" onclick="updateStatusToDeactive('+data+')" Clikc To Deactive></badge></center>'
+                        if(row.status_job=='1'){
+                            return 'On Job';
+                        }else{
+                            return 'Need Job';
                         }
                     }
                 },
                 {
-
+                    "data":"id_supir",
+                    "status_supir":"status_supir",
+                    "render":function(data, type, row,status_supir){
+                        if(row.status_supir=='1'){
+                            return '<center><badge class="btn btn-sm btn-danger fa fa-lock" onclick="updateToactive('+data+')" title="Click To Active Driver"></badge></center>'
+                        }else{
+                            return '<center><badge class="btn btn-sm btn-primary fa fa-unlock" onclick="updateStatusToDeactive('+data+')" title="Click To Deactive Driver"></badge></center>'
+                        }
+                    }
                 }
             ]
         });
@@ -153,9 +159,49 @@
             );
         },
         error:function(data)
-        {
+        { 
             console.log("test")
         },
+        complete:function()
+        {
+            $('#tambah_data_supir').modal('hide');
+            $('#form')[0].reset();
+        }
        })
+    }
+
+    function updateToactive(data)
+    {
+        $.ajax({
+            type :'post',
+            url :'<?= base_url('admin/dashboard/activeDriver/')?>'+data,
+            success:function(data){
+                var tables = $('#table').DataTable();
+                tables.ajax.reload();
+                Swal.fire(
+                    'Good job!',
+                    'Supir Sudah Active',
+                    'success'
+                );
+            }
+        })
+    }
+
+    function updateStatusToDeactive(data)
+    {
+        $.ajax({
+            type :'post',
+            url :'<?= base_url('admin/dashboard/deactiveDriver/')?>'+data,
+            success:function(data){
+                var tables = $('#table').DataTable();
+                tables.ajax.reload();
+                Swal.fire(
+                    'Good job!',
+                    'Supir Sudah Di Non Aktifkan',
+                    'success'
+                );
+                
+            }
+        })
     }
 </script>

@@ -66,6 +66,18 @@ class rental_model extends CI_model {
 	{
 		return $this->db->get('data_driver')->result_array();
 	}
+
+	public function updateDriverStatus($id)
+	{
+		$this->db->where('id_supir',$id);
+		return $this->db->update('data_driver',["status_supir"=>'1']);
+	}
+
+	public function deActiveDriverStatus($id)
+	{
+		$this->db->where('id_supir',$id);
+		return $this->db->update('data_driver',["status_supir"=>'0']);
+	}
 }
 
 ?>
