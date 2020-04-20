@@ -8,7 +8,7 @@
 
 		<?php echo $this->session->flashdata ('pesan') ?>
 
-		<table class ="table table-hover table-striped table-borderd">
+		<table class ="table table-hover table-striped table-borderd" id="table">
 			<thead>
 				<tr>
 				<th> No </th>
@@ -16,6 +16,7 @@
 				<th> Type </th>
 				<th> Merk </th>
 				<th> No. Plat </th>
+				<th> Harga </th>
 				<th> Status </th>
 				<th> Aksi </th>
 			</tr>
@@ -31,6 +32,7 @@
 					<td><?php echo $mb->kode_type?></td>
 					<td><?php echo $mb->merk?></td>
 					<td><?php echo $mb->no_plat?></td>
+					<td><?php echo number_format($mb->harga,2,',','.')?></td>
 					<td><?php 
 					if ($mb->status == "0") {
 						echo "<span class = 'badge badge-danger'> Tidak Tersedia </span>";
@@ -49,3 +51,9 @@
 		</table>
 	</section>
 </div>
+
+<script>
+	$(document).ready( function () {
+    $('#table').DataTable();
+} );
+</script>

@@ -2,6 +2,7 @@
 
 class data_mobil extends Secure_Controller {
 
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -39,6 +40,7 @@ class data_mobil extends Secure_Controller {
 			$warna            = $this->input->post('warna');
 			$tahun            = $this->input->post('tahun');
 			$status           = $this->input->post('status');
+			$harga            = $this->input->post('harga');
 			$gambar           = $_FILES['gambar'] ['name'];
 			if ($gambar='') {} else {
 				$config['upload_path']       = './assets/upload';
@@ -60,6 +62,7 @@ class data_mobil extends Secure_Controller {
 				'warna'              => $warna,
 				'status'             => $status,
 				'gambar'             => $gambar,
+				'harga'             => $harga,
 			);
 
 			$this->rental_model->insert_data($data, 'mobil');
@@ -77,7 +80,6 @@ class data_mobil extends Secure_Controller {
 		$where = array ('id_mobil' => $id);
 		$data ['mobil'] = $this->db->query("SELECT * FROM mobil mb, type tp WHERE mb.kode_type = tp.kode_type AND mb.id_mobil = '$id'")->result ();
 		$data ['type'] = $this->rental_model->get_data('type')->result();
-
 		$this->load->view('templates_admin/header');
 		$this->load->view('templates_admin/sidebar');
 		$this->load->view('admin/form_update_mobil', $data);
@@ -99,13 +101,12 @@ class data_mobil extends Secure_Controller {
 			$warna            = $this->input->post('warna');
 			$tahun            = $this->input->post('tahun');
 			$status           = $this->input->post('status');
+			$harga            = $this->input->post('harga');
 			$gambar           = $_FILES['gambar'] ['name'];
 			if ($gambar) {
 				$config['upload_path']       = './assets/upload';
 				$config['allowed_types']     = 'jpg|jpeg|png|tiff';
-
 				$this->load->library('upload', $config);
-				
 				if ($this->upload->do_upload('gambar')) {
 					$gambar=$this->upload->data('file_name');
 					$this->db->set('gambar' , $gambar);
@@ -113,7 +114,6 @@ class data_mobil extends Secure_Controller {
 					echo $this->upload->display_error();
 				}
 			}
-
 			$data = array(
 				'kode_type'          => $kode_type,
 				'merk'               => $merk,
@@ -121,8 +121,8 @@ class data_mobil extends Secure_Controller {
 				'tahun'              => $tahun,
 				'warna'              => $warna,
 				'status'             => $status,
+				'harga'             => $harga,
 			);
-
 			$where = array (
 				'id_mobil' => $id
 			);
@@ -144,6 +144,7 @@ class data_mobil extends Secure_Controller {
 		$this->form_validation->set_rules('tahun', 'Tahun', 'required');
 		$this->form_validation->set_rules('warna', 'Warna', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
+		$this->form_validation->set_rules('harga', 'Harga', 'required');
 	}
 
 	public function detail_mobil($id)

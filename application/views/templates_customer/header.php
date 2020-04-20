@@ -19,6 +19,9 @@
   <!-- datatables -->
   <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
 </head>
 
 <body>

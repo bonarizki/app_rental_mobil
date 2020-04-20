@@ -91,6 +91,22 @@ class Dashboard extends Secure_Controller {
 
 		echo json_encode(["data"=>"berhasil"]);
 	}
+
+	public function hapusDriver($id)
+	{
+		$hapus = $this->rental_model->hapusSupir($id);
+
+		echo json_encode(["data"=>"berhasil"]);
+	}
+
+	public function jamban($id)
+	{
+		$hapus = $this->rental_model->hapusSupir($id);
+
+		echo json_encode(["data"=>"berhasil"]);
+	}
+
+	
 }
 
 ?>

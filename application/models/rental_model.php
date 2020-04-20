@@ -70,13 +70,30 @@ class rental_model extends CI_model {
 	public function updateDriverStatus($id)
 	{
 		$this->db->where('id_supir',$id);
-		return $this->db->update('data_driver',["status_supir"=>'1']);
+		return $this->db->update('data_driver',["status_supir"=>'0']);
 	}
 
 	public function deActiveDriverStatus($id)
 	{
 		$this->db->where('id_supir',$id);
-		return $this->db->update('data_driver',["status_supir"=>'0']);
+		return $this->db->update('data_driver',["status_supir"=>'1']);
+	}
+
+	public function sewa($data)
+	{
+		return $this->db->insert('data_sewa_mobil',$data);
+	}
+
+	public function updateStatusMobil($data)
+	{
+		$this->db->where('id_mobil',$data['id_mobil']);
+		return $this->db->update('mobil',["status"=>'1']);
+	}
+
+	public function hapusSupir($id)
+	{
+		$this->db->where('id_supir',$id);
+		return $this->db->delete('data_driver');
 	}
 }
 
