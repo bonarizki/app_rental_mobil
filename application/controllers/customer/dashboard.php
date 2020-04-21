@@ -8,7 +8,7 @@ class Dashboard extends Secure_Controller {
 		parent::__construct();
 	}
 
-	public function index ()
+	public function index () 
 	{
 		$data ['mobil'] = $this->rental_model->get_data('mobil') ->result();
 		$this->load->view('templates_customer/header');
@@ -38,6 +38,7 @@ class Dashboard extends Secure_Controller {
 			"id_mobil"=>$this->input->post(['id_mobil'][0]),
 			"lama_sewa"=>$this->input->post(['sewa'][0]),
 			"total_harga"=>$this->input->post(['harga'][0]),
+			"id_supir"=>$this->input->post(['supir'][0]),
 			"created_date"=>$tanggal
 		];
 		$this->rental_model->sewa($data);
@@ -48,7 +49,7 @@ class Dashboard extends Secure_Controller {
 
 	public function dataDriver()
 	{
-		$data = $this->rental_model->getSupir();
+		$data = $this->rental_model->getSupirActive();
 
 		echo json_encode(["data"=>$data]);
 	}

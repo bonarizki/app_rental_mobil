@@ -132,7 +132,7 @@
                         if(row.status_supir=='1'){
                             return '<center><badge class="btn btn-sm btn-success fa fa-lock ml-2" onclick="updateToactive('+data+')" title="Click To Active Driver"></badge><badge class="btn btn-sm btn-danger fa fa-trash" onclick="deleteDriver('+data+')" title="Delete Driver"></badge></center>'
                         }else{
-                            return '<center><badge class="btn btn-sm btn-primary fa fa-unlock ml-2" onclick="deleteDriver('+data+')" title="Click To Deactive Driver"></badge><badge class="btn btn-sm btn-danger fa fa-trash" onclick="deleteDriver('+data+')" title="Delete Driver"></badge></center>'
+                            return '<center><badge class="btn btn-sm btn-primary fa fa-unlock ml-2" onclick="updateStatusToDeactive('+data+')" title="Click To Deactive Driver"></badge><badge class="btn btn-sm btn-danger fa fa-trash" onclick="deleteDriver('+data+')" title="Delete Driver"></badge></center>'
                         }
                     }
                 }

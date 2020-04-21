@@ -95,7 +95,7 @@
         </div>
         <div class="modal-body">
           <img class="card-img-top" id="imgModal" src="" style ="width : 450px; height : 300px" alt="">
-          <h4 id="idModal"></h4>
+          <h4 id="idModal" hidden></h4>
           <h4 id="merekModal"></h4>
           <h5 id="platModal"></h5>
           <h5 id="hargaModal">Harga&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo number_format(1000,2,',','.') ?> </h5>
@@ -105,6 +105,11 @@
           <div id="area" hidden>
           <label class="ml-2 mt-2"><h4>Total Harga</h4></label>
             <input type="text" class="form-control col-11 ml-2 mr-2" id="total_harga" name="total_harga" readonly>
+            <label class="ml-2 mt-2">Driver</label>
+            <select class="form-control col-11 ml-2 mr-2" id="supir" nama="supir">
+              <option value=""><-- Pilih Driver --></option>
+              
+            </select>
           </div>
         </form>
         <div class="modal-footer">
@@ -128,7 +133,6 @@
         $('#idModal').text(ndata[0].id_mobil);
         $('#platModal').text("No. Plat : "+ndata[0].no_plat);
         $('#hargaModal').text("Harga    : "+ndata[0].harga);
-        namaDriver();
       }
     })
     $('#SewaModal').modal('show')
@@ -144,6 +148,7 @@
       $('#total_harga').val(total_harga);
       $('#area').attr('hidden',false);
       $('#button').attr('hidden',false)
+      namaDriver();
     }else{
       $('#area').attr('hidden',true);
       $('#button').attr('hidden',true);
@@ -167,6 +172,7 @@
           "id_mobil" : $('#idModal').text(),
           "sewa" : $('#ls').val(),
           "harga" : $('#total_harga').val(),
+          "supir" : $('#supir').val()
         },
         url:"<?= base_url('customer/dashboard/sewaMobil') ?>",
         success:function(data){
@@ -187,8 +193,11 @@
   {
     $.ajax({
       url:"<?= base_url('customer/dashboard/dataDriver') ?>",
-      success:function(data){
-        console.log(data);
+      success:function(response){
+        var data = JSON.parse(response);
+        $.each(data.data, function(key,val){
+          $('#supir').append('<option value="'+val.id_supir+'">'+val.nama_supir+'</option>');
+        })
       }
     })
   }

@@ -95,6 +95,12 @@ class rental_model extends CI_model {
 		$this->db->where('id_supir',$id);
 		return $this->db->delete('data_driver');
 	}
+
+	public function getSupirActive()
+	{
+		$this->db->where('status_supir','0');
+		return $this->db->get('data_driver')->result_array();
+	}
 }
 
 ?>
