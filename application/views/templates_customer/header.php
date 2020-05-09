@@ -10,6 +10,7 @@
 
   <title>Shop Homepage - Start Bootstrap Template</title>
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- Bootstrap core CSS -->
   <link href="<?php echo base_url() ?>/assets/assets_shop/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -41,17 +42,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">About Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="#">Contact Us</a>
            <li class="nav-item row ml-2">
             <?php if ($this->session->userdata('nama')) { ?>
               <a class="nav-link" href="<?php echo base_url('auth/logout') ?>"> Welcome <?php echo $this->session->userdata('nama') ?> 
               <span class="btn btn-sm btn-warning"> Logout </span> </a>
 
               <a class="nav-link" href="<?php echo base_url('auth/ganti_password') ?>">
-              <span class="btn btn-sm btn-primary"> Ganti Password </span> </a>
+              <!-- <span class="btn btn-sm btn-primary"> Ganti Password </span> </a> -->
 
               <?php } else { ?>
               <a class="nav-link" href="<?php echo base_url('auth/login') ?>"> 

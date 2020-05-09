@@ -39,10 +39,10 @@
 							<td></td>
 							<td>
 								<?php 
-				               if ($dt->status == "0") {
+				               if ($dt->status == "1") {
 				                echo "<span class='btn btn-danger' disable> Telah Di Rental</span>";
 				               }else{
-				                echo anchor('customer/rental/tambah_rental'.$dt->id_mobil, '<button class="btn btn-success"> Rental </button>');
+				                echo '<button class="btn btn-success"  onclick="sewamobil('.$dt->id_mobil.')"> Rental </button>';
 				               }
 				               ?>
 							</td>

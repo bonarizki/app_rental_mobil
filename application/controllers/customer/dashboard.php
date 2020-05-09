@@ -39,6 +39,8 @@ class Dashboard extends Secure_Controller {
 			"lama_sewa"=>$this->input->post(['sewa'][0]),
 			"total_harga"=>$this->input->post(['harga'][0]),
 			"id_supir"=>$this->input->post(['supir'][0]),
+			"tanggal_sewa"=>$this->input->post(['ts'][0]),
+			"tanggal_kembali"=>$this->input->post(['tl'][0]),
 			"created_date"=>$tanggal
 		];
 		$this->rental_model->sewa($data);
