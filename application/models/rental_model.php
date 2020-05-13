@@ -101,6 +101,53 @@ class rental_model extends CI_model {
 		$this->db->where('status_supir','0');
 		return $this->db->get('data_driver')->result_array();
 	}
+
+	public function getAllOrder()
+	{
+		$this->db->select('dsm.id_sewa,dsm.id_mobil,cus.nama,type.nama_type,car.merk,car.warna,car.no_plat,dd.nama_supir,dsm.tanggal_sewa,dsm.tanggal_kembali,dsm.flag_sewa');
+		$this->db->from('data_sewa_mobil as dsm');
+		$this->db->join('customer as cus','dsm.id_customer = cus.id_customer');
+		$this->db->join('mobil as car','dsm.id_mobil = car.id_mobil');
+		$this->db->join('type','car.kode_type = type.kode_type');
+		$this->db->join(' data_driver as dd','dsm.id_supir = dd.id_supir');
+		// $this->db->where('dsm.flag_sewa !=','0');
+		$this->db->order_by('dsm.created_date','asc');
+		return $this->db->get()->result_array();
+
+		// query mentahnya or raw query
+		// SELECT dsm.id_sewa,cus.nama,type.nama_type,car.merk,car.no_plat,dd.nama_supir,dsm.tanggal_sewa,dsm.tanggal_kembali,dsm.flag_sewa
+		// FROM data_sewa_mobil as dsm 
+		// 	join customer as cus on dsm.id_customer = cus.id_customer
+		// 	join mobil as car on dsm.id_mobil = car.id_mobil
+		// 	join type on car.kode_type = type.kode_type
+		// 	join data_driver as dd on dsm.id_supir = dd.id_supir
+		// ORDER BY dsm.created_date asc
+	}
+
+	public function updateCarInRent($id)
+	{
+		$this->db->where('id_sewa',$id);
+		return $this->db->update('data_sewa_mobil',["flag_sewa"=>"1"]);
+	}
+
+	public function updateCarIsBack($id)
+	{
+		$this->db->where('id_sewa',$id);
+		return $this->db->update('data_sewa_mobil',["flag_sewa"=>"2"]);
+	}
+	
+
+	public function updateStatusMobil2($id)
+	{
+		$this->db->where('id_mobil',$id);
+		return $this->db->update('mobil',["status"=>'0']);
+	}
+
+	public function cancelSewa($id)
+	{
+		$this->db->where('id_sewa',$id);
+		return $this->db->delete('data_sewa_mobil');
+	}
 }
 
 ?>

@@ -9,7 +9,7 @@
 
 	<?Php echo $this->session->flashdata('pesan')?>
 
-	<table class="table table-bordered table-striped table-hover">
+	<table class="table table-bordered table-striped table-hover" id="table">
 		<thead>
 			<tr>
 				<th width="20px">No</th>
@@ -35,5 +35,19 @@
 			<?php endforeach; ?>
 		</tbody>
 		</tbody>
-		</table>
+	</table>
 </div>
+
+<script>
+    $(document).ready( function () {
+        $('#table').DataTable({
+			dom: 'Bfrtip',
+            buttons: [
+                'pageLength',
+                { extend: 'pdf', text: '<span class="btn btn-sm btn-info mr-2"><i class="fas fa-file-pdf fa-1x" aria-hidden="true"></i> PDF </span>'},
+                { extend: 'csv', text: '<span class="btn btn-sm btn-info mr-2"><spa class="fas fa-file-csv fa-1x"></i> CSV </span>'},
+                { extend: 'excel', text: '<span class="btn btn-sm btn-info mr-2"><i class="fas fa-file-excel" aria-hidden="true"></i> EXCEL </span>' },
+            ]
+		});
+    } );
+</script>

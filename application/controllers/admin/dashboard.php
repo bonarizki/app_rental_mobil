@@ -99,13 +99,40 @@ class Dashboard extends Secure_Controller {
 		echo json_encode(["data"=>"berhasil"]);
 	}
 
-	public function jamban($id)
+	
+	public function order_rental()
 	{
-		$hapus = $this->rental_model->hapusSupir($id);
-
-		echo json_encode(["data"=>"berhasil"]);
+		$this->load->view('templates_admin/header');
+		$this->load->view('templates_admin/sidebar');
+		$this->load->view('admin/order_rental');
+		$this->load->view('templates_admin/footer');
 	}
 
+	public function getAllOrder()
+	{
+		$data = $this->rental_model->getAllOrder();
+		echo json_encode(["data"=>$data]);
+	}
+
+	public function CarInRent($id)
+	{
+		$data = $this->rental_model->updateCarInRent($id);
+		echo json_encode(["info"=>"success","message"=>"Data Berhasil Diupdate"]);
+	}
+
+	public function carIsBack($id,$id_mobil)
+	{
+		$data = $this->rental_model->updateCarIsBack($id);
+		$mobil = $this->rental_model->updateStatusMobil2($id_mobil);
+		echo json_encode(["info"=>"success","message"=>"Data Berhasil Diupdate"]);
+	}
+
+	public function cancelOrder($id,$id_mobil)
+	{
+		$data = $this->rental_model->cancelSewa($id);
+		$mobil = $this->rental_model->updateStatusMobil2($id_mobil);
+		echo json_encode(["info"=>"success","message"=>"Data Berhasil Diupdate"]);
+	}
 	
 }
 
