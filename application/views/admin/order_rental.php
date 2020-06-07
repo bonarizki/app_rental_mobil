@@ -288,7 +288,7 @@
             confirmButtonText: 'Yes',
             preConfirm:function(isConfirm){
                 $.ajax({
-                    url:"<?= base_url('admin/dashboard/cancelOrder/')?>"+id_sewa+"/"+id_mobil,
+                    url:"<?= base_url('admin/dashboard/carIsBack/')?>"+id_sewa+"/"+id_mobil,
                     success:function(response){
                         sweetSuccess(response.message);
                         tableReset();
