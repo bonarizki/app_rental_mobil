@@ -135,9 +135,9 @@
     function buttonOne(flag_sewa,tanggal_kembali,id_sewa,id_mobil)
     {
         if(flag_sewa=='1'&&today>tanggal_kembali){
-            return '<center><badge class="btn btn-sm btn-danger fa fa-check-double mr-2" title="the car is back"></badge></center>'
+            return '<center><badge class="btn btn-sm btn-danger fa fa-check-double mr-2" title="the car is back" onclick="carBackWithCharge('+"'"+id_sewa+"','"+id_mobil+"'"+')"></badge></center>'
         }else{
-            return '<center><badge class="btn btn-sm btn-success fa fa-check-double mr-2" onclick="carBack('+"'"+id_sewa+"','"+id_mobil+"'"+')"title="the car is back"></badge></center>'
+            return '<center><badge class="btn btn-sm btn-success fa fa-check-double mr-2" onclick="carBack('+"'"+id_sewa+"','"+id_mobil+"'"+')" title="the car is back"></badge></center>'
         }
     }
 
@@ -192,7 +192,7 @@
 
     function carBack(id,id_mobil)
     {
-        console.log(id_mobil)
+        // console.log(id_mobil)
         Swal.fire({
             title: 'Apakah Kamu Yakin?',
             text: "Customer Sudah Mengembalikan Mobil?",
@@ -226,6 +226,66 @@
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, cancel it!',
+            preConfirm:function(isConfirm){
+                $.ajax({
+                    url:"<?= base_url('admin/dashboard/cancelOrder/')?>"+id_sewa+"/"+id_mobil,
+                    success:function(response){
+                        sweetSuccess(response.message);
+                        tableReset();
+                    },
+                    error:function(response){
+                        sweetFailed(response.statusText);
+                    }
+                })
+            }
+        })
+    }
+
+    function carBackWithCharge(id,id_mobil)
+    {
+        Swal.fire({
+            title: 'Apakah Kamu Yakin?',
+            text: "Customer Sudah Mengembalikan Mobil?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Saya Yakin',
+            preConfirm:function(isConfirm){
+                $.ajax({
+                    url:"<?= base_url('admin/dashboard/carBackWithCharge/')?>"+id,
+                    success:function(response){
+                        var data = JSON.parse(response).data[0]
+                        var today = getDateToday()
+                        var tanggal_kembali = data.tanggal_kembali;
+                        var tgl1 = new Date(today);
+                        var tgl2 = new Date(tanggal_kembali);
+                        var timeDiff = (tgl2 - tgl1) / 1000;
+                        var hari = Math.floor(timeDiff/(86400));
+                        var finalhari = Math.abs(hari)
+                        var denda = finalhari*data.harga;
+                        alertCharge(denda,id,id_mobil)
+                        // sweetSuccess(response.message);
+                        // tableReset();
+                    },
+                    error:function(response){
+                        sweetFailed(response.statusText);
+                    }
+                })
+            }
+        })
+    }
+
+    function alertCharge(denda,id_sewa,id_mobil)
+    {
+        Swal.fire({
+            title: 'Denda',
+            text: "Silahkan Tagih Denda Sebesar "+denda,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
             preConfirm:function(isConfirm){
                 $.ajax({
                     url:"<?= base_url('admin/dashboard/cancelOrder/')?>"+id_sewa+"/"+id_mobil,

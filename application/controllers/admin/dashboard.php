@@ -133,6 +133,12 @@ class Dashboard extends Secure_Controller {
 		$mobil = $this->rental_model->updateStatusMobil2($id_mobil);
 		echo json_encode(["info"=>"success","message"=>"Data Berhasil Diupdate"]);
 	}
+
+	public function carBackWithCharge($id)
+	{
+		$data = $this->rental_model->getDataForCalculate($id);
+		echo json_encode(["info"=>"success","data"=>$data]);
+	}
 	
 }
 

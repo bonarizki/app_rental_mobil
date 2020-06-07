@@ -148,6 +148,13 @@ class rental_model extends CI_model {
 		$this->db->where('id_sewa',$id);
 		return $this->db->delete('data_sewa_mobil');
 	}
+
+	public function getDataForCalculate($id)
+	{
+		$query = "SELECT * FROM data_sewa_mobil as dsm INNER JOIN mobil as car on dsm.id_mobil=car.id_mobil where
+		dsm.id_sewa='".$id."'";
+		return $this->db->query($query)->result_array();
+	}
 }
 
 ?>
