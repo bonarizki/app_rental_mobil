@@ -24,14 +24,14 @@
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+              <img class="d-block img-fluid" src="<?= base_url('assets/img')?>/foto1.jpeg" alt="First slide" width="350" height="900">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+              <img class="d-block img-fluid" src="<?= base_url('assets/img')?>/foto2.jpeg" alt="Second slide" width="350" height="900">
             </div>
-            <div class="carousel-item">
+            <!-- <div class="carousel-item">
               <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
-            </div>
+            </div> -->
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

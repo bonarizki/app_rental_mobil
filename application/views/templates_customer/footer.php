@@ -37,8 +37,9 @@
       </div>
   </div>
   <!-- modal end -->
+
  <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 bg-dark fixed-bottom">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Vera Rental 2020</p>
     </div>

@@ -9,7 +9,6 @@ class Auth extends CI_Controller {
 	public function login()
 	{
 		$this->_rules();
-
 		if($this->form_validation->run()  == FALSE) {
 			$this->load->view('templates_admin/header');
 			$this->load->view('form_login');
@@ -50,8 +49,14 @@ class Auth extends CI_Controller {
 
 	public function logout()
 	{
-		$this->session->sess_destroy();
-		redirect('customer/dashboard');
+		$role = $this->session->userdata('role_id');
+		if($role == 1){
+			$this->session->sess_destroy();
+			redirect('auth/login');
+		}else{
+			$this->session->sess_destroy();
+			redirect('customer/dashboard');
+		}
 	}
 
 	public function ganti_password()

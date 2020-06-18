@@ -56,6 +56,13 @@ class Dashboard extends Secure_Controller {
 		echo json_encode(["data"=>$data]);
 	}
 
+	public function aboutUS()
+	{
+		$this->load->view('templates_customer/header');
+		$this->load->view('customer/aboutus');
+		$this->load->view('templates_customer/footer');
+	}
+
 	
 }
 

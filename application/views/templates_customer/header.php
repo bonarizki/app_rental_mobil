@@ -37,12 +37,12 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="<?= base_url('customer/dashboard') ?>">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About Us</a>
+            <a class="nav-link" href="<?= base_url('customer/dashboard/aboutUS') ?>">About Us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Contact Us</a>
@@ -51,7 +51,7 @@
               <a class="nav-link" href="<?php echo base_url('auth/logout') ?>"> Welcome <?php echo $this->session->userdata('nama') ?> 
               <span class="btn btn-sm btn-warning"> Logout </span> </a>
 
-              <a class="nav-link" href="<?php echo base_url('auth/ganti_password') ?>">
+              <!-- <a class="nav-link" href="<?php echo base_url('auth/ganti_password') ?>"> -->
               <!-- <span class="btn btn-sm btn-primary"> Ganti Password </span> </a> -->
 
               <?php } else { ?>
